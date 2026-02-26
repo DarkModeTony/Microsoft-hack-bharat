@@ -52,12 +52,15 @@ from websocket_manager import ws_manager
 #  LOGGING
 # ═══════════════════════════════════════════════════════════
 
+if hasattr(sys.stdout, 'reconfigure'):
+    sys.stdout.reconfigure(encoding='utf-8')
+
 logging.basicConfig(
     level=getattr(logging, config.LOG_LEVEL),
     format=config.LOG_FORMAT,
     handlers=[
         logging.StreamHandler(sys.stdout),
-        logging.FileHandler("market_intelligence.log", mode="a"),
+        logging.FileHandler("market_intelligence.log", mode="a", encoding="utf-8"),
     ],
 )
 logger = logging.getLogger("main")

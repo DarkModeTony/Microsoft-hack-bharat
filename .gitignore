@@ -1,4 +1,22 @@
-# Python
+__pycache__/
+*.pyc
+.env
+venv/
+env/
+*.sqlite3
+*.log
+output/
+data/*.csv
+data/news/*.csv
+# Ignore OneDrive metadata and sync folders
+~$*
+~*\n+Desktop.ini
+.DS_Store
+Thumbs.db
+# VS Code
+.vscode/
+# Python egg
+*.egg-info/# Python
 __pycache__/
 *.py[cod]
 *$py.class
