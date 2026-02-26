@@ -1,6 +1,8 @@
-# 📈 Live Stock & Crypto Market Intelligence System
+# 📈 LiveMarketAI
 
-> **Real-time, event-driven market intelligence platform** with streaming financial analysis, anomaly detection, portfolio risk management, and AI-powered insights — built with Python, FastAPI, WebSockets, and a custom cross-platform streaming engine.
+**"Decode the market in real-time."**
+
+LiveMarketAI is an AI-powered financial market assistant designed to bring clarity to market volatility. It combines real-time financial data with advanced AI to empower users with actionable, data-driven insights. Built with Python, FastAPI, WebSockets, and a custom cross-platform streaming engine.
 
 <div align="center">
 
