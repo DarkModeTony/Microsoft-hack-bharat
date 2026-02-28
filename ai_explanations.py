@@ -40,6 +40,14 @@ def _get_openai_client():
     return _openai_client
 
 
+DUMMY_KEY = "sk-1234efgh5678ijkl1234efgh5678ijkl1234efgh"
+
+
+def _has_real_api_key():
+    """Check if a real (non-dummy) OpenAI API key is configured."""
+    key = config.OPENAI_API_KEY
+    return bool(key) and key != DUMMY_KEY and key.startswith("sk-")
+
 def _llm_generate(system_prompt: str, user_prompt: str, max_tokens: int = 500) -> str:
     """Generate text via OpenAI API with fallback."""
     client = _get_openai_client()
@@ -172,7 +180,8 @@ def _template_answer(question: str, docs: list, market_context: dict = None) -> 
         answer_parts.append("  • Technical indicators — SMA, RSI, MACD, Bollinger Bands")
         answer_parts.append(f"\nAll prices are displayed in Indian Rupees ({C}).")
         answer_parts.append("\nTry: \"How is BTC doing?\", \"What's my portfolio risk?\", \"Summarize the market\"")
-        answer_parts.append("\n⚡ Running in fast template mode (no LLM API key configured).")
+        if not _has_real_api_key():
+            answer_parts.append("\n⚡ Running in fast template mode (no LLM API key configured).")
 
     # ── System / feature questions ──
     elif any(w in q_lower for w in ["feature", "software", "system", "what is this", "about", "capabilities", "what do you do", "who are you", "are you ai", "are you real", "marketintel", "what is market"]):
@@ -187,7 +196,8 @@ def _template_answer(question: str, docs: list, market_context: dict = None) -> 
         answer_parts.append("  🤖 AI-powered Q&A with RAG-based news retrieval")
         if indicators:
             answer_parts.append(f"\n📡 Currently tracking {len(indicators)} assets in real-time.")
-        answer_parts.append("\n⚡ Currently running in template mode (no OpenAI API key). Add a key to unlock full AI answers.")
+        if not _has_real_api_key():
+            answer_parts.append("\n⚡ Currently running in template mode (no OpenAI API key). Add a key to unlock full AI answers.")
 
     # ── Portfolio questions ──
     elif any(w in q_lower for w in ["portfolio", "pnl", "p&l", "profit", "loss", "risk", "drawdown", "var", "position", "holding", "investment", "my money", "balance", "net worth"]):
