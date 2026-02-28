@@ -4,6 +4,14 @@ All tunable parameters, API keys, and asset definitions live here.
 """
 
 import os
+from dotenv import load_dotenv
+
+load_dotenv()  # Load .env file
+
+# ═══════════════════════════════════════════════════════════
+#  CURRENCY
+# ═══════════════════════════════════════════════════════════
+CURRENCY_SYMBOL = "₹"
 
 # ═══════════════════════════════════════════════════════════
 #  API KEYS
@@ -16,13 +24,13 @@ OPENAI_MODEL = os.getenv("OPENAI_MODEL", "gpt-4o-mini")
 # ═══════════════════════════════════════════════════════════
 ASSETS = ["BTC", "ETH", "SOL", "NIFTY", "SENSEX"]
 
-# Initial simulated prices
+# Initial simulated prices (in INR)
 INITIAL_PRICES = {
-    "BTC": 67500.0,
-    "ETH": 3450.0,
-    "SOL": 145.0,
-    "NIFTY": 22300.0,
-    "SENSEX": 73500.0,
+    "BTC": 5602500.0,     # ~67500 USD × 83
+    "ETH": 286350.0,      # ~3450 USD × 83
+    "SOL": 12035.0,       # ~145 USD × 83
+    "NIFTY": 22300.0,     # Already INR
+    "SENSEX": 73500.0,    # Already INR
 }
 
 # Base volumes for simulation

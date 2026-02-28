@@ -155,7 +155,7 @@ class MarketState:
             # Log periodically
             if self.tick_count % 25 == 0:
                 logger.info(
-                    f"📊 Tick #{self.tick_count} | {symbol}=${price:.2f} | "
+                    f"📊 Tick #{self.tick_count} | {symbol}=₹{price:.2f} | "
                     f"Regime={self.regimes[symbol]} | RSI={ind_data.get('rsi', 'N/A')} | "
                     f"WS clients={ws_manager.client_count}"
                 )
@@ -384,9 +384,24 @@ async def websocket_endpoint(websocket: WebSocket):
 FRONTEND_DIR = Path(__file__).parent / "frontend"
 
 @app.get("/")
+def serve_home():
+    """Serve the landing homepage."""
+    return FileResponse(FRONTEND_DIR / "index.html")
+
+@app.get("/dashboard")
 def serve_dashboard():
     """Serve the main dashboard."""
-    return FileResponse(FRONTEND_DIR / "index.html")
+    return FileResponse(FRONTEND_DIR / "dashboard.html")
+
+@app.get("/docs-page")
+def serve_docs():
+    """Serve the documentation page."""
+    return FileResponse(FRONTEND_DIR / "docs.html")
+
+@app.get("/terms")
+def serve_terms():
+    """Serve the terms of service page."""
+    return FileResponse(FRONTEND_DIR / "terms.html")
 
 
 # ─── REST API Endpoints ──────────────────────────
