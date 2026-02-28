@@ -4,6 +4,9 @@ All tunable parameters, API keys, and asset definitions live here.
 """
 
 import os
+from dotenv import load_dotenv
+
+load_dotenv()  # Load .env file
 
 # ═══════════════════════════════════════════════════════════
 #  CURRENCY
