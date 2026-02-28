@@ -155,7 +155,7 @@ class MarketState:
             # Log periodically
             if self.tick_count % 25 == 0:
                 logger.info(
-                    f"📊 Tick #{self.tick_count} | {symbol}=${price:.2f} | "
+                    f"📊 Tick #{self.tick_count} | {symbol}=₹{price:.2f} | "
                     f"Regime={self.regimes[symbol]} | RSI={ind_data.get('rsi', 'N/A')} | "
                     f"WS clients={ws_manager.client_count}"
                 )

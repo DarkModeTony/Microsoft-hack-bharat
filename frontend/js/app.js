@@ -200,9 +200,9 @@
         const changePct = prevPrice > 0 ? ((price - prevPrice) / prevPrice * 100) : 0;
 
         // Format price
-        const formatted = price > 1000 ? price.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })
+        const formatted = price > 1000 ? price.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })
             : price.toFixed(4);
-        priceEl.textContent = `$${formatted}`;
+        priceEl.textContent = `₹${formatted}`;
 
         // Flash animation
         if (card) {
@@ -467,11 +467,11 @@
     function updatePortfolio(data) {
         const s = data.summary || data;
         if (s.total_value !== undefined) {
-            setText('portValue', `$${formatNumber(s.total_value)}`);
+            setText('portValue', `₹${formatNumber(s.total_value)}`);
 
             const pnlEl = document.getElementById('portPnl');
             if (pnlEl) {
-                pnlEl.textContent = `${s.total_pnl >= 0 ? '+' : ''}$${formatNumber(s.total_pnl)}`;
+                pnlEl.textContent = `${s.total_pnl >= 0 ? '+' : ''}₹${formatNumber(s.total_pnl)}`;
                 pnlEl.className = `port-value ${s.total_pnl >= 0 ? 'positive' : 'negative'}`;
             }
 
@@ -481,7 +481,7 @@
                 pctEl.className = `port-value ${s.total_pnl_pct >= 0 ? 'positive' : 'negative'}`;
             }
 
-            setText('portVar', `$${formatNumber(s.total_var_95)}`);
+            setText('portVar', `₹${formatNumber(s.total_var_95)}`);
             setText('portDrawdown', `${s.max_drawdown_pct}%`);
 
             // Risk gauge
@@ -497,9 +497,9 @@
                     <tr>
                         <td style="font-weight:600">${p.symbol}</td>
                         <td>${p.quantity}</td>
-                        <td>$${formatNumber(p.current_price)}</td>
+                        <td>₹${formatNumber(p.current_price)}</td>
                         <td class="${p.pnl >= 0 ? 'positive' : 'negative'}" style="color: ${p.pnl >= 0 ? 'var(--green)' : 'var(--red)'}">
-                            ${p.pnl >= 0 ? '+' : ''}$${formatNumber(p.pnl)}
+                            ${p.pnl >= 0 ? '+' : ''}₹${formatNumber(p.pnl)}
                         </td>
                         <td>${p.risk_score}</td>
                     </tr>
